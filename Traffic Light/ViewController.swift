@@ -16,11 +16,16 @@ class ViewController: UIViewController {
     @IBOutlet var lightButton: UIButton!
     
     override func viewDidLoad() {
-        super.viewDidLoad()  
+        super.viewDidLoad()
         
-        redLight.layer.cornerRadius = 70
-        yellowLight.layer.cornerRadius = 70
-        greenLight.layer.cornerRadius = 70
+    
+        
+       func viewWillLayoutSubviews(view: UIView!) {
+           view.layer.cornerRadius = view.frame.width / 2
+        }
+        
+        viewWillLayoutSubviews(view: redLight)
+        viewWillLayoutSubviews(view: yellowLight)
         
         redLight.alpha = 0.3
         yellowLight.alpha = 0.3
@@ -30,6 +35,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func buttonLight() {
+        viewWillLayoutSubviews()
         if redLight.alpha != 1 && yellowLight.alpha != 1 {
             redLight.alpha = 1
             greenLight.alpha = 0.3
