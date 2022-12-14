@@ -18,24 +18,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        redLight.layer.cornerRadius = redLight.frame.width / 2
-        yellowLight.layer.cornerRadius = yellowLight.frame.width / 2
-        greenLight.layer.cornerRadius = greenLight.frame.width / 2
+        func setupView(_ view: UIView) {
+            view.layer.cornerRadius = view.frame.width / 2
+            view.alpha = 0.3
+        }
         
-        lightButton.layer.cornerRadius = 10
-    
-        redLight.alpha = 0.3
-        yellowLight.alpha = 0.3
-        greenLight.alpha = 0.3
+        setupView(redLight)
+        setupView(yellowLight)
+        setupView(greenLight)
         
     }
     
     
     @IBAction func lightButtonTapped() {
+        lightButton.setTitle("Next", for: .normal)
         if redLight.alpha != 1 && yellowLight.alpha != 1 {
             redLight.alpha = 1
             greenLight.alpha = 0.3
-            lightButton.setTitle("Next", for: .normal)
         } else if yellowLight.alpha != 1 {
             yellowLight.alpha = 1
             redLight.alpha = 0.3
